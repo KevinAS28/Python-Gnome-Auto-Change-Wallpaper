@@ -2,6 +2,7 @@ import os
 from threading import Thread
 import sys
 import time
+import random
 
 msg = """
 Gnome Auto Change Wallpaper v 0.1
@@ -57,6 +58,15 @@ def changeWallpaper():
         time.sleep(time_change)
         
     printLog("Done. exited at {0}".format(time.ctime()))
+
+#handle --now
+#not using argparse because we just handle 1 argument
+if len(sys.argv)>1:
+    if (sys.argv[1]=="--now"):
+        wallpaper = [i for i in os.listdir(wallpaper_directory)]
+        command = "gsettings set org.gnome.desktop.background picture-uri file://{0}".format( os.path.join(wallpaper_directory, wallpaper[random.randrange(0, len(wallpaper))]))
+        os.system(command)
+        sys.exit(0)
 
 thr = Thread(target=changeWallpaper)
 thr.start()
