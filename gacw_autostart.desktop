@@ -1,0 +1,9 @@
+[Desktop Entry]
+Exec=python3 {install_dir}
+Terminal=false
+Type=Application
+Categories=
+GenericName=
+X-GNOME-Autostart-Phase=Initialization
+X-KDE-autostart-phase=1
+NoDisplay=true
